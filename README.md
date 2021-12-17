@@ -1,0 +1,3 @@
+# Exploring GitHub checks
+
+🤓
