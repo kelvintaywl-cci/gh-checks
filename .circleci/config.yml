@@ -7,8 +7,26 @@ jobs:
     resource_class: small
     steps:
       - run: echo "I love lego"
+  test:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - run: echo "I love tests"
+  done:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - run: echo "Fan-in final job to indicate all checks are completed!"
+
 
 workflows:
   main:
     jobs:
       - build
+      - test
+      - done:
+          requires:
+            - build
+            - test
